@@ -26,16 +26,16 @@ namespace Game2048 {
 
         switch (key) {
           case "UpArrow":
-            matrix = DoUp(matrix);
+            DoUp(matrix);
             break;
           case "DownArrow":
-            matrix = DoDown(matrix);
+            DoDown(matrix);
             break;
           case "LeftArrow":
-            matrix = DoLeft(matrix);
+            DoLeft(matrix);
             break;
           case "RightArrow":
-            matrix = DoRight(matrix);
+            DoRight(matrix);
             break;
         }
 
@@ -61,22 +61,21 @@ namespace Game2048 {
       } while (true);
     }
 
-    private static int[, ] DoLeft(int[, ] matrix) {
+    private static void DoLeft(int[, ] matrix) {
       int rowLen = matrix.GetLength(0);
       for (int i = 0; i < rowLen; i++) {
         // get the row
         int[] row = GetRowByIndex(matrix, i);
 
         // do the left action
-        row = NumberMerge(row);
+        NumberMerge(row);
 
         // set the row
-        matrix = SetRowByIndex(matrix, i, row);
+        SetRowByIndex(matrix, i, row);
       }
-      return matrix;
     }
 
-    private static int[, ] DoRight(int[, ] matrix) {
+    private static void DoRight(int[, ] matrix) {
       int rowLen = matrix.GetLength(0);
       for (int i = 0; i < rowLen; i++) {
         // get the row
@@ -84,31 +83,29 @@ namespace Game2048 {
         Array.Reverse(row);
 
         // do the right action
-        row = NumberMerge(row);
+        NumberMerge(row);
 
         // set the row
         Array.Reverse(row);
-        matrix = SetRowByIndex(matrix, i, row);
+        SetRowByIndex(matrix, i, row);
       }
-      return matrix;
     }
 
-    private static int[, ] DoUp(int[, ] matrix) {
+    private static void DoUp(int[, ] matrix) {
       int colLen = matrix.GetLength(1);
       for (int i = 0; i < colLen; i++) {
         // get the col
         int[] col = GetColByIndex(matrix, i);
 
         // do the up action
-        col = NumberMerge(col);
+        NumberMerge(col);
 
         // set the col
-        matrix = SetColByIndex(matrix, i, col);
+        SetColByIndex(matrix, i, col);
       }
-      return matrix;
     }
 
-    private static int[, ] DoDown(int[, ] matrix) {
+    private static void DoDown(int[, ] matrix) {
       int colLen = matrix.GetLength(1);
       for (int i = 0; i < colLen; i++) {
         // get the col
@@ -116,13 +113,12 @@ namespace Game2048 {
         Array.Reverse(col);
 
         // do the up action
-        col = NumberMerge(col);
+        NumberMerge(col);
 
         // set the col
         Array.Reverse(col);
-        matrix = SetColByIndex(matrix, i, col);
+        SetColByIndex(matrix, i, col);
       }
-      return matrix;
     }
 
     private static void GenerateRandomNumber(int[,] matrix) {
@@ -187,13 +183,12 @@ namespace Game2048 {
       return row;
     }
 
-    private static int[,] SetRowByIndex(int[,] matrix, int idx, int[] row) {
+    private static void SetRowByIndex(int[,] matrix, int idx, int[] row) {
       int rowLen = matrix.GetLength(0);
       int colLen = matrix.GetLength(1);
       for (int i = 0; i < colLen; i++) {
         matrix[idx, i] = row[i];
       }
-      return matrix;
     }
 
     private static int[] GetColByIndex(int[,] matrix, int idx) {
@@ -206,13 +201,12 @@ namespace Game2048 {
       return col;
     }
 
-    private static int[,] SetColByIndex(int[,] matrix, int idx, int[] col) {
+    private static void SetColByIndex(int[,] matrix, int idx, int[] col) {
       int rowLen = matrix.GetLength(0);
       int colLen = matrix.GetLength(1);
       for (int i = 0; i < rowLen; i++) {
         matrix[i, idx] = col[i];
       }
-      return matrix;
     }
 
     private static void PrintMatrix(int[, ] matrix) {
@@ -226,7 +220,7 @@ namespace Game2048 {
       Console.WriteLine("---------------------------------------------------------------------------");
     }
 
-    private static int[] ZeroFilter(int[] arr) {
+    private static void ZeroFilter(int[] arr) {
       int[] newArr = new int[arr.Length];
       int counter = 0;
       for (int i = 0; i < arr.Length; i++) {
@@ -234,16 +228,16 @@ namespace Game2048 {
           newArr.SetValue(arr[i], counter++);
         }
       }
-      return newArr;
+      newArr.CopyTo(arr, 0);
     }
 
-    private static int[] NumberMerge(int[] arr) {
+    private static void NumberMerge(int[] arr) {
       // remove zeros
-      arr = ZeroFilter(arr);
+      ZeroFilter(arr);
 
       for (int i = 0; i < arr.Length - 1; i++) {
         // merge
-        if (arr[i] == arr[i + 1]) {
+        if (arr[i] != 0 && arr[i] == arr[i + 1]) {
           arr[i] += arr[i + 1];
           arr[i + 1] = 0;
 
@@ -255,9 +249,7 @@ namespace Game2048 {
       }
 
       // remove zeros
-      arr = ZeroFilter(arr);
-
-      return arr;
+      ZeroFilter(arr);
     }
   }
 }
