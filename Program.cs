@@ -22,19 +22,19 @@ namespace Game2048 {
 
       do {
         ConsoleKeyInfo info = Console.ReadKey();
-        string key = info.Key.ToString();
+        MoveDirection key = (MoveDirection)info.Key.GetHashCode();
 
         switch (key) {
-          case "UpArrow":
+          case MoveDirection.UP:
             DoUp(matrix);
             break;
-          case "DownArrow":
+          case MoveDirection.DOWN:
             DoDown(matrix);
             break;
-          case "LeftArrow":
+          case MoveDirection.LEFT:
             DoLeft(matrix);
             break;
-          case "RightArrow":
+          case MoveDirection.RIGHT:
             DoRight(matrix);
             break;
         }
@@ -121,14 +121,14 @@ namespace Game2048 {
       }
     }
 
-    private static void GenerateRandomNumber(int[,] matrix) {
+    private static void GenerateRandomNumber(int[, ] matrix) {
       int[] pos = GetEmptyPos(matrix);
 
       if (pos[0] == -1) return;
       matrix[pos[0], pos[1]] = 2;
     }
 
-    private static int[] GetEmptyPos(int[,] matrix) {
+    private static int[] GetEmptyPos(int[, ] matrix) {
       int rowLen = matrix.GetLength(0);
       int colLen = matrix.GetLength(1);
 
@@ -143,16 +143,16 @@ namespace Game2048 {
 
       if (pos.Count == 0) {
         isFull = true;
-        return new int[] { -1, -1 };
+        return new int[] {-1, -1 };
       } else {
         isFull = false;
       }
 
       int idx = random.Next(0, pos.Count);
-      return (int [])pos.ToArray()[idx];
+      return (int[]) pos.ToArray() [idx];
     }
 
-    private static bool CheckFail(int[,] matrix) {
+    private static bool CheckFail(int[, ] matrix) {
       int rowLen = matrix.GetLength(0);
       int colLen = matrix.GetLength(1);
 
@@ -173,7 +173,7 @@ namespace Game2048 {
       return true;
     }
 
-    private static int[] GetRowByIndex(int[,] matrix, int idx) {
+    private static int[] GetRowByIndex(int[, ] matrix, int idx) {
       int rowLen = matrix.GetLength(0);
       int colLen = matrix.GetLength(1);
       int[] row = new int[colLen];
@@ -183,7 +183,7 @@ namespace Game2048 {
       return row;
     }
 
-    private static void SetRowByIndex(int[,] matrix, int idx, int[] row) {
+    private static void SetRowByIndex(int[, ] matrix, int idx, int[] row) {
       int rowLen = matrix.GetLength(0);
       int colLen = matrix.GetLength(1);
       for (int i = 0; i < colLen; i++) {
@@ -191,7 +191,7 @@ namespace Game2048 {
       }
     }
 
-    private static int[] GetColByIndex(int[,] matrix, int idx) {
+    private static int[] GetColByIndex(int[, ] matrix, int idx) {
       int rowLen = matrix.GetLength(0);
       int colLen = matrix.GetLength(1);
       int[] col = new int[rowLen];
@@ -201,7 +201,7 @@ namespace Game2048 {
       return col;
     }
 
-    private static void SetColByIndex(int[,] matrix, int idx, int[] col) {
+    private static void SetColByIndex(int[, ] matrix, int idx, int[] col) {
       int rowLen = matrix.GetLength(0);
       int colLen = matrix.GetLength(1);
       for (int i = 0; i < rowLen; i++) {
