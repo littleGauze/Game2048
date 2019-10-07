@@ -1,0 +1,11 @@
+D:\Work\CSharp\Game2048\bin\Debug\netcoreapp3.0\Game2048.exe
+D:\Work\CSharp\Game2048\bin\Debug\netcoreapp3.0\Game2048.deps.json
+D:\Work\CSharp\Game2048\bin\Debug\netcoreapp3.0\Game2048.runtimeconfig.json
+D:\Work\CSharp\Game2048\bin\Debug\netcoreapp3.0\Game2048.runtimeconfig.dev.json
+D:\Work\CSharp\Game2048\bin\Debug\netcoreapp3.0\Game2048.dll
+D:\Work\CSharp\Game2048\bin\Debug\netcoreapp3.0\Game2048.pdb
+D:\Work\CSharp\Game2048\obj\Debug\netcoreapp3.0\Game2048.csprojAssemblyReference.cache
+D:\Work\CSharp\Game2048\obj\Debug\netcoreapp3.0\Game2048.AssemblyInfoInputs.cache
+D:\Work\CSharp\Game2048\obj\Debug\netcoreapp3.0\Game2048.AssemblyInfo.cs
+D:\Work\CSharp\Game2048\obj\Debug\netcoreapp3.0\Game2048.dll
+D:\Work\CSharp\Game2048\obj\Debug\netcoreapp3.0\Game2048.pdb
