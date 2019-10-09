@@ -1,5 +1,5 @@
 namespace Game2048 {
-  enum MoveDirection {
+  public enum ArrowKey {
     LEFT = 37,
     UP,
     RIGHT,
