@@ -210,6 +210,8 @@ namespace Game2048 {
     }
 
     private static void PrintMatrix(int[, ] matrix) {
+      Console.Clear();
+      Console.WriteLine("请使用上下左右键进行游戏: ");
       Console.WriteLine("-----------------------------操作次数：{0}----------------------------------", opCount);
       for (int i = 0; i < matrix.GetLength(0); i++) {
         for (int j = 0; j < matrix.GetLength(1); j++) {
