@@ -18,7 +18,7 @@ namespace Game2048 {
 
     private bool isFull = false;
 
-    private bool isChange = false;
+    private bool isChange = true;
     public bool IsChange { get { return this.isChange; } }
 
     public GameCore() {
@@ -144,9 +144,11 @@ namespace Game2048 {
       }
 
       this.isFull = false;
-      int idx = random.Next(0, randomList.Count);
-      int[] item = randomList[idx];
-      matrix[item[0], item[1]] = random.Next(1, 11) == 1 ? 4 : 2;
+      if (this.isChange) {
+        int idx = random.Next(0, randomList.Count);
+        int[] item = randomList[idx];
+        matrix[item[0], item[1]] = random.Next(1, 11) == 1 ? 4 : 2;
+      }
     }
 
     public bool IsFailed() {
